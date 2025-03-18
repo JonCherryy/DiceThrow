@@ -43,7 +43,20 @@ class DieFragment : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
     fun throwDie() {
-        dieTextView.text = Random.nextInt(dieSides + 1).toString()
+        val currentRoll = Random.nextInt(dieSides + 1).toString()
+        dieTextView.text = currentRoll.toString()
+    }
+
+    companion object{
+        fun newInstance(sides: Int) = DieFragment().apply{
+            val arguements = Bundle().apply{
+                putInt(DIESIDE, sides)
+            }
+        }
     }
 }
